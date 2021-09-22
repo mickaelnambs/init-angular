@@ -1,0 +1,20 @@
+<h1>Liste des taches a realiser</h1>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let todo of todos, let i = index">
+        <div [ngClass]="{encours:todo.todoStatus,terminee:!todo.todoStatus}">
+            <a [href]="todo.image">
+                <img [src]="todo.image" alt="">
+            </a>
+            {{ todo.todoName }}
+
+            <button class="btn btn-primary" [disabled]="todo.todoStatus"
+            (click)="onChangeStatus(i)"
+            >En cours</button>
+            <button class="btn btn-success" [disabled]="!todo.todoStatus"
+            (click)="onChangeStatus(i)"
+            >Terminée</button>
+
+            <input type="text" *ngIf="todo.isModif" class="form-control" [(ngModel)]="todo.todoName" />
+        </div>
+    </li>
+</ul>
